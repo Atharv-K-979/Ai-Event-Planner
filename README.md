@@ -88,23 +88,34 @@ A full-stack AI-powered event management platform built with Next.js, Convex, Cl
 
 3. **Configure Environment Variables in Vercel**:
    Go to Project Settings → Environment Variables and add:
+   
+   **⚠️ IMPORTANT: Use your ACTUAL keys, NOT placeholders!**
+   
+   - Go to your Clerk Dashboard → API Keys
+   - Copy the **actual** `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` (starts with `pk_test_` or `pk_live_`)
+   - Copy the **actual** `CLERK_SECRET_KEY` (starts with `sk_test_` or `sk_live_`)
+   - Get `CLERK_JWT_ISSUER_DOMAIN` from Clerk Dashboard → JWT Templates (format: `https://your-app.clerk.accounts.dev`)
+
+   Add these variables in Vercel:
 
    ```
    # Convex
    CONVEX_DEPLOYMENT=your-production-deployment-id
    NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
 
-   # Clerk
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-   CLERK_SECRET_KEY=sk_test_...
+   # Clerk (⚠️ USE YOUR REAL KEYS FROM CLERK DASHBOARD)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_YOUR_ACTUAL_KEY_HERE
+   CLERK_SECRET_KEY=sk_test_YOUR_ACTUAL_KEY_HERE
    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-   CLERK_JWT_ISSUER_DOMAIN=https://your-domain.clerk.accounts.dev
+   CLERK_JWT_ISSUER_DOMAIN=https://your-app.clerk.accounts.dev
 
    # APIs
    NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your-unsplash-key
    GEMINI_API_KEY=your-gemini-key
    ```
+   
+   **Common Error**: If you see `pk_test_xxxxxxxxxxxxxxxxx` in build logs, you're using a placeholder. Replace it with your actual Clerk key!
 
 4. **Update Clerk Allowed Origins**:
    - In Clerk Dashboard → Settings → Domains
@@ -193,4 +204,4 @@ This project is private and proprietary.
 
 ---
 
-Made with ❤️ by Atharv K
+Made with ❤️ by atharvk

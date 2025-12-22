@@ -662,7 +662,7 @@ export const run = internalMutation({
       const organizerId = await ctx.db.insert("users", {
         email: "atharvvk853@gmail.com",
         tokenIdentifier: "seed-user-token",
-        name: "Atharv's Team",
+        name: "atharvk's Team",
         hasCompletedOnboarding: true,
         location: {
           city: "Bangalore",
