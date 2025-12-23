@@ -168,26 +168,44 @@ Visit [http://localhost:3000](http://localhost:3000)
 
 ### Environment Variables
 
-Create a `.env.local` file with:
+**For Local Development:**
+
+1. Copy the template file:
+   ```bash
+   cp env.template .env.local
+   ```
+
+2. Edit `.env.local` and fill in your actual keys:
+   ```bash
+   # Open in your editor and replace placeholder values
+   nano .env.local
+   # or
+   code .env.local
+   ```
+
+**Required Variables:**
 
 ```env
-# Deployment used by `npx convex dev`
-CONVEX_DEPLOYMENT=
+# Convex
+CONVEX_DEPLOYMENT=your-convex-deployment-id
+NEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
 
-NEXT_PUBLIC_CONVEX_URL=
-
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_actual_key
+CLERK_SECRET_KEY=sk_test_your_actual_key
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+CLERK_JWT_ISSUER_DOMAIN=https://your-app.clerk.accounts.dev
 
-CLERK_JWT_ISSUER_DOMAIN=
-
-NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
-
-GEMINI_API_KEY=
+# APIs
+NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_unsplash_key
+GEMINI_API_KEY=your_gemini_key
 ```
+
+**⚠️ Important:**
+- `.env.local` is already in `.gitignore` - it won't be committed to Git
+- For Vercel deployment, set these same variables in Vercel Dashboard → Settings → Environment Variables
+- Never commit your `.env.local` file with real keys!
 
 ## 📦 Tech Stack
 

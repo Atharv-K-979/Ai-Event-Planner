@@ -12,17 +12,6 @@ export const metadata = {
   description: "Discover and create amazing events",
 };
 
-// Validate Clerk publishable key
-const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-if (!clerkPublishableKey || clerkPublishableKey.includes("xxxxxxxx")) {
-  if (process.env.NODE_ENV === "production") {
-    throw new Error(
-      "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is missing or invalid. Please set a valid Clerk publishable key in your Vercel environment variables."
-    );
-  }
-}
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
