@@ -1,6 +1,26 @@
-import { internal } from "./_generated/api";
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+
+// Helper function to get authenticated user
+async function getCurrentUser(ctx) {
+  const identity = await ctx.auth.getUserIdentity();
+  if (!identity) {
+    throw new Error("User not authenticated");
+  }
+
+  const user = await ctx.db
+    .query("users")
+    .withIndex("by_token", (q) =>
+      q.eq("tokenIdentifier", identity.tokenIdentifier)
+    )
+    .unique();
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+}
 
 // Create a new event
 export const createEvent = mutation({
@@ -27,7 +47,7 @@ export const createEvent = mutation({
   },
   handler: async (ctx, args) => {
     try {
-      const user = await ctx.runQuery(internal.users.getCurrentUser);
+      const user = await getCurrentUser(ctx);
       const hasPro = args.hasPro ?? false;
 
       // SERVER-SIDE CHECK: Verify event limit for Free users
@@ -99,7 +119,7 @@ export const getEventBySlug = query({
 // Get events by organizer
 export const getMyEvents = query({
   handler: async (ctx) => {
-    const user = await ctx.runQuery(internal.users.getCurrentUser);
+    const user = await getCurrentUser(ctx);
 
     const events = await ctx.db
       .query("events")
@@ -115,7 +135,7 @@ export const getMyEvents = query({
 export const deleteEvent = mutation({
   args: { eventId: v.id("events") },
   handler: async (ctx, args) => {
-    const user = await ctx.runQuery(internal.users.getCurrentUser);
+    const user = await getCurrentUser(ctx);
 
     const event = await ctx.db.get(args.eventId);
     if (!event) {
