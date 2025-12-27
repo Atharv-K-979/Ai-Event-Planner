@@ -26,3 +26,7 @@ Make sure in **Vercel Dashboard → Environment Variables**, you have:
 CLERK_JWT_ISSUER_DOMAIN=https://sought-mantis-67.clerk.accounts.dev
 ```
 
+
+
+
+

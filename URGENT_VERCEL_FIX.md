@@ -113,3 +113,7 @@ Even though we deployed Convex successfully, Vercel is still running with the ol
 
 **Once you redeploy with the correct variables, the error will be fixed! 🚀**
 
+
+
+
+

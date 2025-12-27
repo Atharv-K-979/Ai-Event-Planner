@@ -31,7 +31,7 @@ export default function UpgradeModal({ isOpen, onClose, trigger = "limit" }) {
         <div className="my-6 border rounded-lg p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10">
           <div className="text-center mb-6">
             <h3 className="text-2xl font-bold mb-2">Pro Plan</h3>
-            <div className="text-4xl font-bold mb-2">Free</div>
+            <div className="text-4xl font-bold mb-2">10 Doller</div>
             <p className="text-sm text-muted-foreground">
               Currently in development
             </p>

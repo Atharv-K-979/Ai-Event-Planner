@@ -56,3 +56,7 @@ GEMINI_API_KEY=AIzaSyD6QjAoT7znvgAajfNvml4aiR7geBr-bwU
 
 **Your site will NOT work until you set these in Vercel Dashboard!**
 
+
+
+
+
